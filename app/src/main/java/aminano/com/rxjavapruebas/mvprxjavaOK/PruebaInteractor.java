@@ -17,7 +17,7 @@ import rx.schedulers.Schedulers;
 public class PruebaInteractor extends InteractorInterface{
   private Observable<SuperObject> objectObservable;
 
-  public Observable<SuperObject> action() {
+  public Observable<Post> action() {
 
     Log.e("solucion asdasd","");
     Post post=new Post();
