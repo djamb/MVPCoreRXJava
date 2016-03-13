@@ -32,5 +32,6 @@ public abstract class InteractorInterface {
     this.value = value;
   }
 
-  abstract Observable<? super SuperObject> action();
+  // Producer "extends"
+  abstract Observable<? extends SuperObject> action();
 }
