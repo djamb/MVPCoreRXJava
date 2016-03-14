@@ -1,5 +1,6 @@
 package aminano.com.rxjavapruebas.mvprxjavaOK;
 
+import aminano.com.rxjavapruebas.mvprxjavaOK.retrofit.Post;
 import aminano.com.rxjavapruebas.mvprxjavaOK.retrofit.SuperObject;
 import rx.Observable;
 import rx.Subscriber;
@@ -7,7 +8,7 @@ import rx.Subscriber;
 /**
  * @author Antonio Miñano
  */
-public abstract class InteractorInterface {
+public abstract class InteractorInterface<T extends Observable<SuperObject>> {
   private SuperObject value;
   private Class clase;
   public Observable<SuperObject> getObject() {
@@ -32,5 +33,7 @@ public abstract class InteractorInterface {
     this.value = value;
   }
 
-  abstract Observable<? super SuperObject> action();
+  //abstract Observable<? super SuperObject> action();
+  //abstract Observable<T> action();
+  abstract T action();
 }

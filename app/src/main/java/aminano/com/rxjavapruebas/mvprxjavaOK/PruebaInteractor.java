@@ -14,11 +14,11 @@ import rx.schedulers.Schedulers;
 /**
  * @author Antonio Miñano
  */
-public class PruebaInteractor extends InteractorInterface{
+public class PruebaInteractor<T  extends Observable> extends InteractorInterface{
   private Observable<SuperObject> objectObservable;
 
-  public Observable<SuperObject> action() {
-
+  //public Observable<T> action() {
+  public T action() {
     Log.e("solucion asdasd","");
     Post post=new Post();
     post.setId(1111);
@@ -37,9 +37,10 @@ public class PruebaInteractor extends InteractorInterface{
     ////}, 2000);
     //return objectObservable;
     ForumService forum=new ForumService();
+    return (T)forum.getApi()
+        .getPost(1);
     //return forum.getApi()
     //    .getPost(1);
-    return forum.getApi()
-        .getPost(1);
+
   }
 }

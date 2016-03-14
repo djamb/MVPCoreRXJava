@@ -1,7 +1,10 @@
 package aminano.com.rxjavapruebas.mvprxjavaOK;
 
 import aminano.com.rxjavapruebas.api.model.Image;
+import aminano.com.rxjavapruebas.mvprxjavaOK.retrofit.Post;
+import aminano.com.rxjavapruebas.mvprxjavaOK.retrofit.SuperObject;
 import android.util.Log;
+import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
@@ -11,7 +14,7 @@ import rx.subscriptions.CompositeSubscription;
 /**
  * @author Antonio Miñano
  */
-public abstract class RxPresenterInterface {
+public abstract class RxPresenterInterface<T  extends Observable<SuperObject>> {
   public MainViewInterface mainView;
 
 
@@ -25,8 +28,7 @@ public abstract class RxPresenterInterface {
 
   public void Subscriber(Object object, final int elegir) {
     compositeSubscription = new CompositeSubscription();
-    compositeSubscription.add(((InteractorInterface) object).action()
-        .subscribeOn(Schedulers.newThread())
+    compositeSubscription.add(((T)((InteractorInterface) object).action()).subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(
             // On Next

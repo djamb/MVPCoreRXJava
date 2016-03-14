@@ -44,7 +44,7 @@ public class ForumService {
 
     @GET("/posts/{id}")
     //
-    public Observable<SuperObject> getPost(@Path("id") int postId);
+    public Observable<Post> getPost(@Path("id") int postId);
 
     @GET("/comments")
     public Observable<List<SuperObject>> getComments(@Query("postId") int postId);
