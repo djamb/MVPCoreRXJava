@@ -41,7 +41,6 @@ public class ForumService {
     public Observable<List<Object>> getPosts();
 
     @GET("/posts/{id}")
-    //
     public Observable<Post> getPost(@Path("id") int postId);
 
     @GET("/comments")

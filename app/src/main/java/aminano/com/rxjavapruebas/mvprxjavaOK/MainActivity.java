@@ -16,17 +16,15 @@ public class MainActivity extends Activity implements MainViewInterface {
   private TextView text2;
   private ProgressBar progress;
   private PruebaInteractor pruebainteractor;
-  //private ForumService mForumService;
   private PruebaInteractor2 pruebainteractor2;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    //mForumService = new ForumService();
     pruebainteractor = new PruebaInteractor();
     pruebainteractor2 = new PruebaInteractor2();
-    requestPresenterImp = new RequestPresenterImp(this, pruebainteractor,pruebainteractor2/*,mForumService*/ );
+    requestPresenterImp = new RequestPresenterImp(this, pruebainteractor,pruebainteractor2);
     text1 = (TextView) findViewById(R.id.hello_world);
     text2 = (TextView) findViewById(R.id.asd);
     progress=(ProgressBar)findViewById(R.id.progress);
@@ -47,7 +45,7 @@ public class MainActivity extends Activity implements MainViewInterface {
 
   @Override
   public void writeSomething(String text) {
-    text1.setText("hola"+text);
+    text1.setText(""+text);
     Log.e("", "settext");
   }
   @Override
