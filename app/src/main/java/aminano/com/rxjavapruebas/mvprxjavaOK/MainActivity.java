@@ -1,59 +1,59 @@
 package aminano.com.rxjavapruebas.mvprxjavaOK;
 
 
-import aminano.com.rxjavapruebas.mvprxjavaOK.retrofit.ForumService;
-import aminano.com.rxjavapruebas.mvprxjavaOK.retrofit.Post;
+import aminano.com.rxjavapruebas.mvprxjavaOK.retrofit.model.Post;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import java.util.List;
-import rx.subscriptions.CompositeSubscription;
 
 public class MainActivity extends Activity implements MainViewInterface {
   private RequestPresenterImp requestPresenterImp;
-  private TextView imageViewphoto;
-  private TextView imageViewphoto2;
+  private TextView text1;
+  private TextView text2;
+  private ProgressBar progress;
   private PruebaInteractor pruebainteractor;
-  ForumService mForumService;
+  //private ForumService mForumService;
   private PruebaInteractor2 pruebainteractor2;
-  public final static String asds = "MainActivity";
-  private CompositeSubscription compositeSubscription;
-  ;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    mForumService = new ForumService();
+    //mForumService = new ForumService();
     pruebainteractor = new PruebaInteractor();
     pruebainteractor2 = new PruebaInteractor2();
-    requestPresenterImp = new RequestPresenterImp(this, pruebainteractor,pruebainteractor2,mForumService );
-    imageViewphoto = (TextView) findViewById(R.id.hello_world);
-    imageViewphoto2 = (TextView) findViewById(R.id.asd);
+    requestPresenterImp = new RequestPresenterImp(this, pruebainteractor,pruebainteractor2/*,mForumService*/ );
+    text1 = (TextView) findViewById(R.id.hello_world);
+    text2 = (TextView) findViewById(R.id.asd);
+    progress=(ProgressBar)findViewById(R.id.progress);
     requestPresenterImp.doActionStartSession();
     requestPresenterImp.doActionTakePicture("");
   }
 
+
   @Override
   public void enableLoading() {
-    Log.e("", "enable loading");
+    progress.setVisibility(View.VISIBLE);
   }
 
   @Override
   public void disableLoading() {
-    Log.e("", "disable loading");
+    progress.setVisibility(View.INVISIBLE);
   }
 
   @Override
-  public void writeSomething() {
-    imageViewphoto.setText("hola");
+  public void writeSomething(String text) {
+    text1.setText("hola"+text);
     Log.e("", "settext");
   }
   @Override
   public void writeSomething2() {
-    imageViewphoto2.setText("caca");
-    Log.e("", "settext");
+    text2.setText("mundo");
+    Log.e("", "settext2");
   }
   @Override
   public void displayPost(List<Post> post){

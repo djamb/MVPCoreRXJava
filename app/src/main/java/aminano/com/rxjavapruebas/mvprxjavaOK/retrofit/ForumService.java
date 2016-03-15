@@ -4,6 +4,7 @@ package aminano.com.rxjavapruebas.mvprxjavaOK.retrofit;
  * @author Antonio Miñano
  */
 
+import aminano.com.rxjavapruebas.mvprxjavaOK.retrofit.model.Post;
 import java.util.List;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
@@ -13,9 +14,6 @@ import retrofit.http.Path;
 import retrofit.http.Query;
 import rx.Observable;
 
-/**
- * Created by kmangutov on 3/25/15.
- */
 public class ForumService {
   private static final String FORUM_SERVER_URL = "http://jsonplaceholder.typicode.com";
   private ForumApi mForumApi;
@@ -40,16 +38,16 @@ public class ForumService {
 
   public interface ForumApi {
     @GET("/posts")
-    public Observable<List<SuperObject>> getPosts();
+    public Observable<List<Object>> getPosts();
 
     @GET("/posts/{id}")
     //
     public Observable<Post> getPost(@Path("id") int postId);
 
     @GET("/comments")
-    public Observable<List<SuperObject>> getComments(@Query("postId") int postId);
+    public Observable<List<Object>> getComments(@Query("postId") int postId);
 
     @POST("/posts")
-    public Observable<SuperObject> postPost(Post post);
+    public Observable<Object> postPost(Post post);
   }
 }

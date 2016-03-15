@@ -1,9 +1,9 @@
-package aminano.com.rxjavapruebas.mvprxjavaOK.retrofit;
+package aminano.com.rxjavapruebas.mvprxjavaOK.retrofit.model;
 
 /**
  * @author Antonio Miñano
  */
-public class Post extends SuperObject{
+public class Post{
   private int userId;
   private int id;
   private String title;
