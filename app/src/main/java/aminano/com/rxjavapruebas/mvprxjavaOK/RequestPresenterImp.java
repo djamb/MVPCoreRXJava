@@ -2,6 +2,7 @@ package aminano.com.rxjavapruebas.mvprxjavaOK;
 
 import aminano.com.rxjavapruebas.mvprxjavaOK.core.RxPresenterInterface;
 import aminano.com.rxjavapruebas.mvprxjavaOK.retrofit.ForumService;
+import aminano.com.rxjavapruebas.mvprxjavaOK.retrofit.model.Comment;
 import aminano.com.rxjavapruebas.mvprxjavaOK.retrofit.model.Post;
 import android.util.Log;
 
@@ -49,7 +50,7 @@ public class RequestPresenterImp extends RxPresenterInterface implements Request
       Log.e("resultado1", "" + (((Post) getObject())).getTitle());
       mainView.writeSomething((((Post) getObject())).getTitle());
     } else if (elegir == 2) {
-      //Log.e("resultado2", "" + ((Image)getObjecta()).getHeight());
+      Log.e("resultado2", "" + ((Comment)getObject()).getName());
       mainView.writeSomething2();
     }
   }

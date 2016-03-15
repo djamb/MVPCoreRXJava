@@ -41,6 +41,7 @@ public abstract class RxPresenterInterface<T extends Observable<Object>> {
                   @Override
                   public void call(Throwable throwable) {
                     Log.e("error", throwable.getMessage(), throwable);
+                    mainView.disableLoading();
                   }
                 },
 

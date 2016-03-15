@@ -12,10 +12,9 @@ public class PruebaInteractor2 extends InteractorInterface {
 
   public Observable<Object> action() {
     Comment comment =new Comment();
-    comment.setId(1);
-    comment.setName("esto1");
-    Object b=(Object)comment;
-    setValue((Object)comment);
+    comment.setId(3);
+    comment.setName("nombre2");
+    setValue(comment);
     objectObservable = getObject();
     return objectObservable;
   }
