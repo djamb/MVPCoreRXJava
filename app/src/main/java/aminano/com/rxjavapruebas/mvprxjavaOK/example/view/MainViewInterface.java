@@ -1,6 +1,6 @@
-package aminano.com.rxjavapruebas.mvprxjavaOK;
+package aminano.com.rxjavapruebas.mvprxjavaOK.example.view;
 
-import aminano.com.rxjavapruebas.mvprxjavaOK.retrofit.model.Post;
+import aminano.com.rxjavapruebas.mvprxjavaOK.example.retrofit.model.Post;
 import java.util.List;
 
 /**
@@ -13,7 +13,6 @@ public interface MainViewInterface {
 
   void writeSomething(String text);
 
-  void writeSomething2() ;
+  void writeSomething2(String text) ;
 
-  void displayPost(List<Post> post);
   }

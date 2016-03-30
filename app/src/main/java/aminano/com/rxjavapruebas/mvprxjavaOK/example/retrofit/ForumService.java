@@ -1,17 +1,14 @@
-package aminano.com.rxjavapruebas.mvprxjavaOK.retrofit;
+package aminano.com.rxjavapruebas.mvprxjavaOK.example.retrofit;
 
 /**
  * @author Antonio Miñano
  */
 
-import aminano.com.rxjavapruebas.mvprxjavaOK.retrofit.model.Post;
-import java.util.List;
+import aminano.com.rxjavapruebas.mvprxjavaOK.example.retrofit.model.Post;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.http.GET;
-import retrofit.http.POST;
 import retrofit.http.Path;
-import retrofit.http.Query;
 import rx.Observable;
 
 public class ForumService {
@@ -37,16 +34,9 @@ public class ForumService {
   }
 
   public interface ForumApi {
-    @GET("/posts")
-    public Observable<List<Object>> getPosts();
 
     @GET("/posts/{id}")
     public Observable<Post> getPost(@Path("id") int postId);
 
-    @GET("/comments")
-    public Observable<List<Object>> getComments(@Query("postId") int postId);
-
-    @POST("/posts")
-    public Observable<Object> postPost(Post post);
   }
 }

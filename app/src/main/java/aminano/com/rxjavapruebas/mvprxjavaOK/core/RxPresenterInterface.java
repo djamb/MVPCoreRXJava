@@ -1,8 +1,7 @@
 package aminano.com.rxjavapruebas.mvprxjavaOK.core;
 
-import aminano.com.rxjavapruebas.mvprxjavaOK.MainViewInterface;
+import aminano.com.rxjavapruebas.mvprxjavaOK.example.view.MainViewInterface;
 import android.util.Log;
-import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
@@ -12,27 +11,31 @@ import rx.subscriptions.CompositeSubscription;
 /**
  * @author Antonio Miñano
  */
-public abstract class RxPresenterInterface<T extends Observable<Object>> {
+//public abstract class RxPresenterInterface<T extends Observable<Object>> {
+public abstract class RxPresenterInterface {
   protected MainViewInterface mainView;
   private Object object;
   private CompositeSubscription compositeSubscription;
+
   public RxPresenterInterface(MainViewInterface mainView) {
     this.mainView = mainView;
   }
 
-  public void Subscriber(Object object, final int elegir) {
+  public void Subscriber(Object object, final int elegir, final Object... objectsFromPresent) {
     compositeSubscription = new CompositeSubscription();
-    compositeSubscription.add(
-        ((T) ((InteractorInterface) object).action()).subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
+    //compositeSubscription.add(
+        //((T) ((InteractorInterface) object).action(objectsFromPresent)).subscribeOn(
+        //    Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+
+        compositeSubscription.add(
+            (((InteractorInterface) object).action(objectsFromPresent)).subscribeOn(
+                Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(
                 // On Next
                 new Action1<Object>() {
                   @Override
                   public void call(final Object userName) {
                     setObject(userName);
                     actionExecuteMainMethod(elegir);
-                    mainView.disableLoading();
                   }
                 },
 
@@ -41,7 +44,6 @@ public abstract class RxPresenterInterface<T extends Observable<Object>> {
                   @Override
                   public void call(Throwable throwable) {
                     Log.e("error", throwable.getMessage(), throwable);
-                    mainView.disableLoading();
                   }
                 },
 
@@ -49,7 +51,8 @@ public abstract class RxPresenterInterface<T extends Observable<Object>> {
                 new Action0() {
                   @Override
                   public void call() {
-                    Log.e("", "ok");
+                    //Log.e("", "ok");
+
                   }
                 }));
   }
@@ -62,5 +65,6 @@ public abstract class RxPresenterInterface<T extends Observable<Object>> {
     this.object = object;
   }
 
-  public  abstract void actionExecuteMainMethod(final int elegir);
+  //Acciones en la vista
+  public abstract void actionExecuteMainMethod(final int elegir);
 }
