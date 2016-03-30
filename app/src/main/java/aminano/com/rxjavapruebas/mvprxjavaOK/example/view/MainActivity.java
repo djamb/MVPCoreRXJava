@@ -1,14 +1,17 @@
-package aminano.com.rxjavapruebas.mvprxjavaOK;
+package aminano.com.rxjavapruebas.mvprxjavaOK.example.view;
 
 
-import aminano.com.rxjavapruebas.mvprxjavaOK.retrofit.model.Post;
+import aminano.com.rxjavapruebas.mvprxjavaOK.R;
+import aminano.com.rxjavapruebas.mvprxjavaOK.example.interactor.getid.PruebaInteractor;
+import aminano.com.rxjavapruebas.mvprxjavaOK.example.interactor.changestate.PruebaInteractor2;
+import aminano.com.rxjavapruebas.mvprxjavaOK.example.presenter.RequestPresenterImp;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import java.util.List;
+
 
 public class MainActivity extends Activity implements MainViewInterface {
   private RequestPresenterImp requestPresenterImp;
@@ -28,8 +31,8 @@ public class MainActivity extends Activity implements MainViewInterface {
     text1 = (TextView) findViewById(R.id.hello_world);
     text2 = (TextView) findViewById(R.id.asd);
     progress=(ProgressBar)findViewById(R.id.progress);
-    requestPresenterImp.doActionStartSession();
-    requestPresenterImp.doActionTakePicture("");
+    requestPresenterImp.doActionGetFromApi();
+    requestPresenterImp.doTransformToObservable("hola caracola");
   }
 
 
@@ -46,15 +49,11 @@ public class MainActivity extends Activity implements MainViewInterface {
   @Override
   public void writeSomething(String text) {
     text1.setText(""+text);
-    Log.e("", "settext");
+    Log.e("", "settext"+text);
   }
   @Override
-  public void writeSomething2() {
-    text2.setText("mundo");
-    Log.e("", "settext2");
-  }
-  @Override
-  public void displayPost(List<Post> post){
-    Log.e("", ""+post.size());
+  public void writeSomething2(String text) {
+    text2.setText(text);
+    Log.e("", "settext2"+text);
   }
 }

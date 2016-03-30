@@ -1,4 +1,4 @@
-package aminano.com.rxjavapruebas.mvprxjavaOK.retrofit.model;
+package aminano.com.rxjavapruebas.mvprxjavaOK.example.retrofit.model;
 
 /**
  * @author Antonio Miñano
