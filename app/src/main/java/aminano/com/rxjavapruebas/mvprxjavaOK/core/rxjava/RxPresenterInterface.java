@@ -48,6 +48,37 @@ public abstract class RxPresenterInterface<T extends View> extends CorePresenter
             }));
   }
 
+  public void SubscriberNonMainThread(Object object, final int elegir, final Object... objectsFromPresent) {
+    compositeSubscription = new CompositeSubscription();
+    compositeSubscription.add(
+        (((InteractorInterface) object).action(objectsFromPresent)).subscribeOn(Schedulers.io()).subscribe(
+            // On Next
+            new Action1<Object>() {
+              @Override
+              public void call(final Object userName) {
+                setObject(userName);
+                actionExecuteMainMethod(elegir);
+              }
+            },
+
+            // On Error
+            new Action1<Throwable>() {
+              @Override
+              public void call(Throwable throwable) {
+                Log.e("error", throwable.getMessage(), throwable);
+              }
+            },
+
+            // On Complete
+            new Action0() {
+              @Override
+              public void call() {
+                //Log.e("", "ok");
+
+              }
+            }));
+  }
+
   public Object getObject() {
     return object;
   }

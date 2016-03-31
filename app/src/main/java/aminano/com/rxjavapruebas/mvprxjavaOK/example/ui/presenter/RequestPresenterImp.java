@@ -25,6 +25,7 @@ public class RequestPresenterImp extends RequestPresenter {
 
   @Override
   public void doTransformToObservable(String stringFromView) {
+    //Borrar para prueba de interactor anidados
     Subscriber(pruebaInteractor2, 2, stringFromView);
   }
 
