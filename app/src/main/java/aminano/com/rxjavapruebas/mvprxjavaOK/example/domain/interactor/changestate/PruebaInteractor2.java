@@ -1,6 +1,6 @@
-package aminano.com.rxjavapruebas.mvprxjavaOK.example.interactor.changestate;
+package aminano.com.rxjavapruebas.mvprxjavaOK.example.domain.interactor.changestate;
 
-import aminano.com.rxjavapruebas.mvprxjavaOK.core.InteractorInterface;
+import aminano.com.rxjavapruebas.mvprxjavaOK.core.rxjava.InteractorInterface;
 import aminano.com.rxjavapruebas.mvprxjavaOK.example.retrofit.model.Comment;
 import rx.Observable;
 

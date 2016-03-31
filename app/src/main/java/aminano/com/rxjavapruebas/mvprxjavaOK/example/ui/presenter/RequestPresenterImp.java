@@ -1,29 +1,25 @@
-package aminano.com.rxjavapruebas.mvprxjavaOK.example.presenter;
+package aminano.com.rxjavapruebas.mvprxjavaOK.example.ui.presenter;
 
-import aminano.com.rxjavapruebas.mvprxjavaOK.core.RxPresenterInterface;
-import aminano.com.rxjavapruebas.mvprxjavaOK.example.interactor.changestate.PruebaInteractor2;
-import aminano.com.rxjavapruebas.mvprxjavaOK.example.interactor.getid.PruebaInteractor;
+import aminano.com.rxjavapruebas.mvprxjavaOK.core.rxjava.InteractorInterface;
 import aminano.com.rxjavapruebas.mvprxjavaOK.example.retrofit.model.Comment;
 import aminano.com.rxjavapruebas.mvprxjavaOK.example.retrofit.model.Post;
-import aminano.com.rxjavapruebas.mvprxjavaOK.example.view.MainViewInterface;
 
 /**
  * @author Antonio Miñano
  */
-public class RequestPresenterImp extends RxPresenterInterface implements RequestPresenter {
-  private PruebaInteractor pruebaInteractor;
-  private PruebaInteractor2 pruebaInteractor2;
+public class RequestPresenterImp extends RequestPresenter {
+  private InteractorInterface pruebaInteractor;
+  private InteractorInterface pruebaInteractor2;
 
-  public RequestPresenterImp(MainViewInterface mainView, PruebaInteractor pruebaInteractor,
-      PruebaInteractor2 pruebaInteractor2) {
-    super(mainView);
+  public RequestPresenterImp(InteractorInterface pruebaInteractor,
+      InteractorInterface pruebaInteractor2) {
     this.pruebaInteractor = pruebaInteractor;
     this.pruebaInteractor2 = pruebaInteractor2;
   }
 
   @Override
   public void doActionGetFromApi() {
-    mainView.enableLoading();
+    view.enableLoading();
     Subscriber(pruebaInteractor, 1);
   }
 
@@ -36,10 +32,10 @@ public class RequestPresenterImp extends RxPresenterInterface implements Request
   @Override
   public void actionExecuteMainMethod(int elegir) {
     if (elegir == 1) {
-      mainView.writeSomething((((Post) getObject())).getTitle());
-      mainView.disableLoading();
+      view.writeSomething((((Post) getObject())).getTitle());
+      view.disableLoading();
     } else if (elegir == 2) {
-      mainView.writeSomething2(((Comment) getObject()).getName());
+      view.writeSomething2(((Comment) getObject()).getName());
     }
 
     ////Ejemplo de ejecución de interactor anidados
@@ -51,5 +47,10 @@ public class RequestPresenterImp extends RxPresenterInterface implements Request
     //  mainView.writeSomething2(((Comment) getObject()).getName());
     //}
 
+  }
+
+  @Override
+  public void onViewReady() {
+    super.onViewReady();
   }
 }
